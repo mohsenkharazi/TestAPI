@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +30,29 @@ namespace TestAPI.Controllers
 
             //testing arrays --> arrays are not type safe you may point to unavailable index of arrayear
             string[] myArrVar = new string[] { "Mohsen", "Unknown"};
-            
+
+            myString = "";
+            foreach (var item in EvenNumbers(20))
+            {            
+                myString += myString + item.ToString() + " ";   
+            }
          
-            return myArrVar[4];
+            return myString;
+        }
+
+        private static IEnumerable<int> EvenNumbers(int limit)
+        {
+            int start = 0;
+            Collection<int> evenNumberColl = new Collection<int>();
+
+
+            while (start <= limit)
+            {
+                evenNumberColl.Add(start);
+                start += 2;
+            }
+
+            return evenNumberColl;
         }
     }
 }
